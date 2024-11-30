@@ -1,0 +1,21 @@
+.card{
+    max-width: 430px;
+    background: #f5fcff;
+}
+
+.no-decor{
+    text-decoration: none;
+}
+
+.gradient-blue-rose {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(0, 0, 0), rgba(13, 69, 77, 0.912));
+
+    min-height: calc(100vh - 52px) !important;
+}
