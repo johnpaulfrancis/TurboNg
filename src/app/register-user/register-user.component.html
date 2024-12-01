@@ -5,31 +5,48 @@
                 <div class="postion-relative">
                     <div class="card bg-glass">
                         <div class="card-body px-4 py-5 px-md-5">
-                            <form>
-                                <p class="h4 text-center">Register</p>
+                            <form [formGroup]="registrationForm" (ngSubmit)="registerClick()">
+                                <p class="h4 text-center">Create a new account</p>
                                 <div class="row mt-3">
                                     <div class="col-md-12 mb-2">
-                                        <label class="form-label" for="userName">Name</label>
-                                        <input id="userName" type="text" class="form-control" placeholder="john" />
+                                        <label class="form-label" for="userName">Name<span class="text-red">*</span></label>
+                                        <input id="userName" type="text" class="form-control" placeholder="john" formControlName="name" maxlength="25" />
+                                        <div *ngIf="registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid" class="validationMsg">
+                                            <small *ngIf="registrationForm.get('name')?.errors?.['required']">Please enter name</small>
+                                            <small *ngIf="registrationForm.get('name')?.errors?.['minLength']">Name must be greater than 3 characters</small>
+                                            <small *ngIf="registrationForm.get('name')?.errors?.['maxLength']">Name must be less than or equal to 25 characters</small>
+                                        </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label class="form-label" for="userEmail">Email</label>
-                                        <input id="userEmail" type="text" class="form-control" placeholder="john@xyz.com" />
+                                        <label class="form-label" for="userEmail">Email<span class="text-red">*</span></label>
+                                        <input id="userEmail" type="text" class="form-control" placeholder="john@xyz.com" formControlName="email" maxlength="40"/>
+                                        <div *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid" class="validationMsg">
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['required']">Plese enter email</small>
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email</small>
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['minLength']">Email must have at least 4 character length</small>
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['maxLength']">Email must be less than or equal to 40 characters </small>
+                                        </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label class="form-label" for="userPassword">Password</label>
-                                        <input id="userPassword" type="password" class="form-control" placeholder="password"/>
+                                        <label class="form-label" for="userPassword">Password<span class="text-red">*</span></label>
+                                        <input id="userPassword" type="password" class="form-control" placeholder="password" formControlName="password" maxlength="15"/>
+                                        <div *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.invalid" class="validationMsg">
+                                            <small *ngIf="registrationForm.get('password')?.errors?.['required']">Please enter password</small>
+                                            <small *ngIf="registrationForm.get('password')?.errors?.['minLength']">Password must have at least 8 characters </small>
+                                            <small *ngIf="registrationForm.get('password')?.errors?.['maxLength']">Password must be less than or equal to 15 characters</small>
+                                        </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <label class="form-label" for="userConPassword">Confirm Password</label>
-                                        <input id="userConPassword" type="password" class="form-control" placeholder="confirm password"/>
+                                        <label class="form-label" for="userConPassword">Confirm Password<span class="text-red">*</span></label>
+                                        <input id="userConPassword" type="password" class="form-control" placeholder="confirm password" formControlName="conPassword" maxlength="40"/>
+                                       
                                     </div>
                                 </div>
-                                <input type="submit" id="btnRegister" class="btn btn-primary text-center" value="Register"/>
+                                <input type="submit" id="btnRegister" class="btn btn-primary text-center" value="Sign Up"/>
                             </form>
                         </div>
                         <div class="card-footer">
-                            <p>Have an account? <a class="no-decor" routerLink="/login">Login Now</a></p>
+                            <p>Already have an account? <a class="no-decor" routerLink="/login">Login now</a></p>
                         </div>
                     </div>
                 </div>

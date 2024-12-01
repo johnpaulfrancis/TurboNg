@@ -7,6 +7,16 @@
     text-decoration: none;
 }
 
+.validationMsg{
+    color: red;
+    margin-right: 7px;
+    text-align: right;
+}
+
+.text-red{
+    color: red;
+}
+
 .gradient-blue-rose {
     /* fallback for old browsers */
     background: #6a11cb;
