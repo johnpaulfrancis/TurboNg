@@ -33,13 +33,28 @@ export class RegisterUserComponent {
       //The validators that are applied to the control (e.g., Validators.required, Validators.minLength, etc.)
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       email: ['', [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(40)]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
-    });
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      conPassword: ['',[Validators.required]]
+    },
+    {
+      validators: this.passwordMatchValidator //custom validator to check whether the pw and confirm pw fields are same
+    }
+  );
+  }
+
+  passwordMatchValidator(group: FormGroup) {
+    const pw = group.get('password')?.value;
+    const conPw = group.get('conPassword')?.value;
+    if (conPw != '') {
+      return pw === conPw ? null : { 'pwMismatch': true };
+    }
+    else {
+      return null;
+    }
   }
   
 
   registerClick(){
-    debugger;
     if(this.registrationForm.valid){
       alert("Valid");
     }

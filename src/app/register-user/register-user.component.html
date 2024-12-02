@@ -39,7 +39,12 @@
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label" for="userConPassword">Confirm Password<span class="text-red">*</span></label>
                                         <input id="userConPassword" type="password" class="form-control" placeholder="confirm password" formControlName="conPassword" maxlength="40"/>
-                                       
+                                        <div *ngIf="registrationForm.get('conPassword')?.touched && registrationForm.get('conPassword')?.invalid" class="validationMsg">
+                                            <small *ngIf="registrationForm.get('conPassword')?.errors?.['required']">Please enter confirm password</small>
+                                        </div>
+                                        <div *ngIf="registrationForm.hasError('pwMismatch') && registrationForm.get('conPassword')?.touched"  class="validationMsg">
+                                            <small *ngIf="registrationForm.errors?.['pwMismatch']">Password must be same</small>
+                                        </div>
                                     </div>
                                 </div>
                                 <input type="submit" id="btnRegister" class="btn btn-primary text-center" value="Sign Up"/>
