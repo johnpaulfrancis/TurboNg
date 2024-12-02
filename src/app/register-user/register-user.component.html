@@ -13,8 +13,8 @@
                                         <input id="userName" type="text" class="form-control" placeholder="john" formControlName="name" maxlength="25" />
                                         <div *ngIf="registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid" class="validationMsg">
                                             <small *ngIf="registrationForm.get('name')?.errors?.['required']">Please enter name</small>
-                                            <small *ngIf="registrationForm.get('name')?.errors?.['minLength']">Name must be greater than 3 characters</small>
-                                            <small *ngIf="registrationForm.get('name')?.errors?.['maxLength']">Name must be less than or equal to 25 characters</small>
+                                            <small *ngIf="registrationForm.get('name')?.errors?.['minlength']">Name must be greater than 3 characters</small>
+                                            <small *ngIf="registrationForm.get('name')?.errors?.['maxlength']">Name must be less than or equal to 25 characters</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
@@ -23,8 +23,8 @@
                                         <div *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid" class="validationMsg">
                                             <small *ngIf="registrationForm.get('email')?.errors?.['required']">Plese enter email</small>
                                             <small *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email</small>
-                                            <small *ngIf="registrationForm.get('email')?.errors?.['minLength']">Email must have at least 4 character length</small>
-                                            <small *ngIf="registrationForm.get('email')?.errors?.['maxLength']">Email must be less than or equal to 40 characters </small>
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['minlength']">Email must have at least 4 character length</small>
+                                            <small *ngIf="registrationForm.get('email')?.errors?.['maxlength']">Email must be less than or equal to 40 characters </small>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
@@ -32,8 +32,8 @@
                                         <input id="userPassword" type="password" class="form-control" placeholder="password" formControlName="password" maxlength="15"/>
                                         <div *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.invalid" class="validationMsg">
                                             <small *ngIf="registrationForm.get('password')?.errors?.['required']">Please enter password</small>
-                                            <small *ngIf="registrationForm.get('password')?.errors?.['minLength']">Password must have at least 8 characters </small>
-                                            <small *ngIf="registrationForm.get('password')?.errors?.['maxLength']">Password must be less than or equal to 15 characters</small>
+                                            <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must have at least 8 characters </small>
+                                            <small *ngIf="registrationForm.get('password')?.errors?.['maxlength']">Password must be less than or equal to 15 characters</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
