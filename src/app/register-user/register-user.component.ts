@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms'; //For verifying the user input
 import { CommonModule } from '@angular/common'; //For *ngIf
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-register-user',
@@ -18,7 +19,7 @@ export class RegisterUserComponent {
   registrationForm: FormGroup;
 
   //constructor is a special method that runs when the component is instantiated. In Angular, the constructor is typically used for dependency injection and initialization tasks
-  constructor() {
+  constructor(private userService: UserServiceService) {
 
     //inject(FormBuilder) is used to inject the FormBuilder service into the constructor.
     //FormBuilder is an Angular service that helps to create FormGroup and FormControl instances more easily and concisely
@@ -54,11 +55,20 @@ export class RegisterUserComponent {
   }
   
 
-  registerClick(){
-    if(this.registrationForm.valid){
-      alert("Valid");
+  registerClick() {
+    if (this.registrationForm.valid) {
+      const userForm = this.registrationForm.value;
+      this.userService.createUser(userForm).subscribe({
+        next: (response) => {
+          alert("User created");
+          this.registrationForm.reset();
+        },
+        error: (error) => {
+          alert("Error occurred while creating a user");
+        },
+      });
     }
-    else{
+    else {
       alert("Invalid form");
     }
   }
