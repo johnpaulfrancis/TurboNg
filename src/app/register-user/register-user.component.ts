@@ -60,16 +60,17 @@ export class RegisterUserComponent {
       const userForm = this.registrationForm.value;
       this.userService.createUser(userForm).subscribe({
         next: (response) => {
-          alert("User created");
+          //DisplayToastMsg function wrote in index.html. window is used to making this function publically available
+          (window as any).DisplayToastMsg('Account has been successfully created.', 'success', 'Created');
           this.registrationForm.reset();
         },
         error: (error) => {
-          alert("Error occurred while creating a user");
+          (window as any).DisplayToastMsg('Please try again.', 'danger', 'Something went wrong');
         },
       });
     }
     else {
-      alert("Invalid form");
+      (window as any).DisplayToastMsg('Invalid form. Please make sure all fields are filled.', 'danger', 'Something went wrong');
     }
   }
 
