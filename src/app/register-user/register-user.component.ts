@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms'; //For verifying the user input
 import { CommonModule } from '@angular/common'; //For *ngIf
 import { UserServiceService } from '../services/user-service.service';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-user',
@@ -59,10 +60,18 @@ export class RegisterUserComponent {
     if (this.registrationForm.valid) {
       const userForm = this.registrationForm.value;
       this.userService.createUser(userForm).subscribe({
-        next: (response) => {
-          //DisplayToastMsg function wrote in index.html. window is used to making this function publically available
-          (window as any).DisplayToastMsg('Account has been successfully created.', 'success', 'Created');
-          this.registrationForm.reset();
+        next: (response: any) => {
+          if (response.statusCode == HttpStatusCode.Created) {
+            //DisplayToastMsg function wrote in index.html. window is used to making this function publically available
+            (window as any).DisplayToastMsg('Account has been successfully created.', 'success', 'Created');
+            this.registrationForm.reset();
+          }
+          else if (response.statusCode == HttpStatusCode.Ok) {
+            (window as any).DisplayToastMsg('Username already is in use.', 'warning', 'Already Exist');
+          }
+          else {
+            (window as any).DisplayToastMsg('Please try again.', 'danger', 'Something went wrong');
+          }
         },
         error: (error) => {
           (window as any).DisplayToastMsg('Please try again.', 'danger', 'Something went wrong');
